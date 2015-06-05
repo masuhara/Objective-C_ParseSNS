@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AAA5A907BD36A6C4075CFD4 /* libPods-ParseSNS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B9BE384ED32DA8005498CA /* libPods-ParseSNS.a */; };
 		AF8EDE011B21A87A007B4EDC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8EDE001B21A87A007B4EDC /* main.m */; };
 		AF8EDE041B21A87A007B4EDC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8EDE031B21A87A007B4EDC /* AppDelegate.m */; };
 		AF8EDE071B21A87A007B4EDC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8EDE061B21A87A007B4EDC /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		340122C1B7179E2CB3897C38 /* Pods-ParseSNS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseSNS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParseSNS/Pods-ParseSNS.debug.xcconfig"; sourceTree = "<group>"; };
+		53B9BE384ED32DA8005498CA /* libPods-ParseSNS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParseSNS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8EDDFB1B21A87A007B4EDC /* ParseSNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseSNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8EDDFF1B21A87A007B4EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF8EDE001B21A87A007B4EDC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		AF8EDE141B21A87A007B4EDC /* ParseSNSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseSNSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8EDE191B21A87A007B4EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF8EDE1A1B21A87A007B4EDC /* ParseSNSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseSNSTests.m; sourceTree = "<group>"; };
+		DE5ADC56CEEC18C23DAB76B7 /* Pods-ParseSNS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseSNS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParseSNS/Pods-ParseSNS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AAA5A907BD36A6C4075CFD4 /* libPods-ParseSNS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03EED915EC55DE1962317001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53B9BE384ED32DA8005498CA /* libPods-ParseSNS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		67B3A457BF0D6CD024ECA3F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				340122C1B7179E2CB3897C38 /* Pods-ParseSNS.debug.xcconfig */,
+				DE5ADC56CEEC18C23DAB76B7 /* Pods-ParseSNS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AF8EDDF21B21A87A007B4EDC = {
 			isa = PBXGroup;
 			children = (
 				AF8EDDFD1B21A87A007B4EDC /* ParseSNS */,
 				AF8EDE171B21A87A007B4EDC /* ParseSNSTests */,
 				AF8EDDFC1B21A87A007B4EDC /* Products */,
+				67B3A457BF0D6CD024ECA3F5 /* Pods */,
+				03EED915EC55DE1962317001 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,9 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF8EDE1E1B21A87A007B4EDC /* Build configuration list for PBXNativeTarget "ParseSNS" */;
 			buildPhases = (
+				6533FCEFE41C7B3ACC638CA1 /* Check Pods Manifest.lock */,
 				AF8EDDF71B21A87A007B4EDC /* Sources */,
 				AF8EDDF81B21A87A007B4EDC /* Frameworks */,
 				AF8EDDF91B21A87A007B4EDC /* Resources */,
+				297B32F3EB4776915FE066EF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,6 +239,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		297B32F3EB4776915FE066EF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParseSNS/Pods-ParseSNS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6533FCEFE41C7B3ACC638CA1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AF8EDDF71B21A87A007B4EDC /* Sources */ = {
@@ -345,6 +404,7 @@
 		};
 		AF8EDE1F1B21A87A007B4EDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 340122C1B7179E2CB3897C38 /* Pods-ParseSNS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ParseSNS/Info.plist;
@@ -355,6 +415,7 @@
 		};
 		AF8EDE201B21A87A007B4EDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE5ADC56CEEC18C23DAB76B7 /* Pods-ParseSNS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ParseSNS/Info.plist;
@@ -416,6 +477,7 @@
 				AF8EDE201B21A87A007B4EDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF8EDE211B21A87A007B4EDC /* Build configuration list for PBXNativeTarget "ParseSNSTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +486,7 @@
 				AF8EDE231B21A87A007B4EDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
