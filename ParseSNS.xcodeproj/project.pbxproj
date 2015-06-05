@@ -15,6 +15,9 @@
 		AF8EDE0C1B21A87A007B4EDC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8EDE0B1B21A87A007B4EDC /* Images.xcassets */; };
 		AF8EDE0F1B21A87A007B4EDC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8EDE0D1B21A87A007B4EDC /* LaunchScreen.xib */; };
 		AF8EDE1B1B21A87A007B4EDC /* ParseSNSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8EDE1A1B21A87A007B4EDC /* ParseSNSTests.m */; };
+		AF8EDE281B21BE32007B4EDC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EDE251B21BE32007B4EDC /* Default-568h@2x.png */; };
+		AF8EDE291B21BE32007B4EDC /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EDE261B21BE32007B4EDC /* Default-667h@2x.png */; };
+		AF8EDE2A1B21BE32007B4EDC /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF8EDE271B21BE32007B4EDC /* Default-736h@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		AF8EDE141B21A87A007B4EDC /* ParseSNSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseSNSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8EDE191B21A87A007B4EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF8EDE1A1B21A87A007B4EDC /* ParseSNSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParseSNSTests.m; sourceTree = "<group>"; };
+		AF8EDE251B21BE32007B4EDC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AF8EDE261B21BE32007B4EDC /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
+		AF8EDE271B21BE32007B4EDC /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		DE5ADC56CEEC18C23DAB76B7 /* Pods-ParseSNS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseSNS.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParseSNS/Pods-ParseSNS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +126,7 @@
 		AF8EDDFE1B21A87A007B4EDC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF8EDE241B21BE32007B4EDC /* Defaults */,
 				AF8EDDFF1B21A87A007B4EDC /* Info.plist */,
 				AF8EDE001B21A87A007B4EDC /* main.m */,
 			);
@@ -141,6 +148,16 @@
 				AF8EDE191B21A87A007B4EDC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF8EDE241B21BE32007B4EDC /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				AF8EDE251B21BE32007B4EDC /* Default-568h@2x.png */,
+				AF8EDE261B21BE32007B4EDC /* Default-667h@2x.png */,
+				AF8EDE271B21BE32007B4EDC /* Default-736h@3x.png */,
+			);
+			path = Defaults;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,8 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF8EDE0A1B21A87A007B4EDC /* Main.storyboard in Resources */,
+				AF8EDE281B21BE32007B4EDC /* Default-568h@2x.png in Resources */,
 				AF8EDE0F1B21A87A007B4EDC /* LaunchScreen.xib in Resources */,
 				AF8EDE0C1B21A87A007B4EDC /* Images.xcassets in Resources */,
+				AF8EDE291B21BE32007B4EDC /* Default-667h@2x.png in Resources */,
+				AF8EDE2A1B21BE32007B4EDC /* Default-736h@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ParseSNS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -419,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ParseSNS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
