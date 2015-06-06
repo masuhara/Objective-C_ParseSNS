@@ -77,6 +77,12 @@
     return cell;
 }
 
+#pragma mark - TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld", indexPath.row);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 #pragma mark - Private
 - (IBAction)refresh {
@@ -117,7 +123,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^ {
         self.view.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
-    } completion:^(BOOL finished) {
+    }completion:^(BOOL finished) {
         
     }];
 }
