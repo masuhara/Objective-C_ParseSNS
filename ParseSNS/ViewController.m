@@ -8,23 +8,20 @@
 
 #import "ViewController.h"
 #import <Parse/Parse.h>
+#import "SVProgressHUD.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UITextFieldDelegate>
 
 @end
 
 @implementation ViewController {
-    //表示する配列
     IBOutlet UITableView *mainTableView;
-    
-    //取ってきたデータを入れるための配列
     NSMutableArray *dataArray;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // 配列の初期化
+
     if (!dataArray) {
         dataArray = [NSMutableArray new];
     }
@@ -41,7 +38,6 @@
 }
 
 - (IBAction)addItem {
-    
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"入力" message:@"メモを入力して下さい。" delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"送信", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView show];
@@ -49,19 +45,16 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        // Parseとデータをやりとりするために、PFObjectにParseに作成したMemoクラスを格納しておく
         PFObject *object = [PFObject objectWithClassName:@"Memo"];
-        
-        // PFObjectクラスのtextカラムに、testという文字列を格納
         object[@"text"] = [alertView textFieldAtIndex:0].text;
-        
-        // Parseに送信して保存。バックグラウンドスレッドで行う。
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!succeeded) {
-                
-                return;
-            }else {
+            if (!error) {
                 [self loadData];
+                if (succeeded) {
+                    [SVProgressHUD showSuccessWithStatus:@"送信成功!"];
+                }
+            }else {
+                [self showErrorAlert:error];
             }
         }];
     }
@@ -92,9 +85,48 @@
 
 
 - (void)loadData {
+    [SVProgressHUD showWithStatus:@"ロード中"];
     PFQuery *query = [PFQuery queryWithClassName:@"Memo"];
-    dataArray = [[[query findObjects] valueForKey:@"text"] mutableCopy];
-    [mainTableView reloadData];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            dataArray = [[objects valueForKey:@"text"] mutableCopy];
+            [mainTableView reloadData];
+        }else {
+            [self showErrorAlert:error];
+        }
+        [SVProgressHUD dismiss];
+    }];
 }
+
+- (void)showErrorAlert:(NSError *)error {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"エラー" message:@"通信エラーが発生しました" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alertView show];
+}
+
+/*
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^ {
+        self.view.center = CGPointMake(self.view.center.x, self.view.center.y - 150);
+        
+    }completion:^(BOOL finished) {
+        
+    }];
+
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^ {
+        self.view.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+ */
+
+
+
+
+
+
 
 @end
