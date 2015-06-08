@@ -19,6 +19,7 @@
     NSMutableArray *dataArray;
 }
 
+#pragma mark - Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (!dataArray) {
@@ -32,29 +33,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)addItem {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"入力" message:@"メモを入力して下さい。" delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"送信", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        PFObject *object = [PFObject objectWithClassName:@"Memo"];
-        object[@"text"] = [alertView textFieldAtIndex:0].text;
-        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [self loadData];
-                if (succeeded) {
-                    [SVProgressHUD showSuccessWithStatus:@"送信成功!"];
-                }
-            }else {
-                [self showErrorAlert:error];
-            }
-        }];
-    }
 }
 
 #pragma mark - TableView DataSource
@@ -95,8 +73,32 @@
     }
 }
 
+#pragma mark - AlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        PFObject *object = [PFObject objectWithClassName:@"Memo"];
+        object[@"text"] = [alertView textFieldAtIndex:0].text;
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [self loadData];
+                if (succeeded) {
+                    [SVProgressHUD showSuccessWithStatus:@"送信成功!"];
+                }
+            }else {
+                [self showErrorAlert:error];
+            }
+        }];
+    }
+}
+
 
 #pragma mark - Private
+- (IBAction)addItem {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"入力" message:@"メモを入力して下さい。" delegate:self cancelButtonTitle:@"キャンセル" otherButtonTitles:@"送信", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
 - (IBAction)refresh {
     [self loadData];
 }
