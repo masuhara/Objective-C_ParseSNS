@@ -107,7 +107,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             dataArray = [objects mutableCopy];
-            //dataArray = [[objects valueForKey:@"text"] mutableCopy];
             [mainTableView reloadData];
         }else {
             [self showErrorAlert:error];
