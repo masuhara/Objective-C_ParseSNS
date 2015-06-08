@@ -21,14 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     if (!dataArray) {
         dataArray = [NSMutableArray new];
     }
-    
     mainTableView.dataSource = self;
     mainTableView.delegate = self;
-    
     [self loadData];
 }
 
@@ -68,19 +65,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
-    
+    cell.textLabel.text = [[dataArray valueForKey:@"text"] objectAtIndex:indexPath.row];
     return cell;
 }
 
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [SVProgressHUD showWithStatus:@"削除中..." maskType:SVProgressHUDMaskTypeBlack];
+        PFObject *object = dataArray[indexPath.row];
+        [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [SVProgressHUD dismiss];
+                [SVProgressHUD showSuccessWithStatus:@"削除成功!"];
+                [dataArray removeObjectAtIndex:indexPath.row];
+                [mainTableView reloadData];
+            }else {
+                [SVProgressHUD dismiss];
+                [self showErrorAlert:error];
+            }
+        }];
+    }
 }
 
 
@@ -89,13 +101,13 @@
     [self loadData];
 }
 
-
 - (void)loadData {
     [SVProgressHUD showWithStatus:@"ロード中"];
     PFQuery *query = [PFQuery queryWithClassName:@"Memo"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            dataArray = [[objects valueForKey:@"text"] mutableCopy];
+            dataArray = [objects mutableCopy];
+            //dataArray = [[objects valueForKey:@"text"] mutableCopy];
             [mainTableView reloadData];
         }else {
             [self showErrorAlert:error];
@@ -108,31 +120,6 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"エラー" message:@"通信エラーが発生しました" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];
 }
-
-/*
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^ {
-        self.view.center = CGPointMake(self.view.center.x, self.view.center.y - 150);
-        
-    }completion:^(BOOL finished) {
-        
-    }];
-
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^ {
-        self.view.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
-    }completion:^(BOOL finished) {
-        
-    }];
-}
- */
-
-
-
-
-
 
 
 @end
